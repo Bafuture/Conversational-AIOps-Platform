@@ -34,13 +34,13 @@ async def chat(request: ChatRequest):
         统一格式的对话响应
     """
     try:
-        logger.info(f"[会话 {request.id}] 收到快速对话请求: {request.question}")
+        logger.info(f"[会话 {request.session_id}] 收到快速对话请求: {request.question}")
         answer = await rag_agent_service.query(
             request.question,
-            session_id=request.id
+            session_id=request.session_id
         )
 
-        logger.info(f"[会话 {request.id}] 快速对话完成")
+        logger.info(f"[会话 {request.session_id}] 快速对话完成")
 
         return {
             "code": 200,
@@ -89,11 +89,11 @@ async def chat_stream(request: ChatRequest):
     Returns:
         SSE 事件流
     """
-    logger.info(f"[会话 {request.id}] 收到流式对话请求: {request.question}")
+    logger.info(f"[会话 {request.session_id}] 收到流式对话请求: {request.question}")
 
     async def event_generator():
         try:
-            async for chunk in rag_agent_service.query_stream(request.question, session_id=request.id):
+            async for chunk in rag_agent_service.query_stream(request.question, session_id=request.session_id):
                 chunk_type = chunk.get("type", "unknown")
                 chunk_data = chunk.get("data", None)
 
@@ -154,7 +154,7 @@ async def chat_stream(request: ChatRequest):
                         }, ensure_ascii=False)
                     }
 
-            logger.info(f"[会话 {request.id}] 流式对话完成")
+            logger.info(f"[会话 {request.session_id}] 流式对话完成")
 
         except Exception as e:
             logger.error(f"流式对话接口错误: {e}")
