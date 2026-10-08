@@ -17,7 +17,7 @@
 ## 🛠️ 技术栈
 
 - **框架**: FastAPI + LangChain + LangGraph
-- **LLM**: 阿里云 DashScope (通义千问)
+- **LLM**: 阿里云 DashScope ，deepseek
 - **向量库**: Milvus
 - **工具协议**: MCP (Model Context Protocol)
 
@@ -26,7 +26,7 @@
 ### 环境要求
 - Python 3.10+
 - 阿里云 DashScope API Key ([获取地址](https://dashscope.aliyun.com/))
-
+- deepseek API key
 ### 安装和启动
 
 #### Linux/macOS 环境
@@ -409,8 +409,3 @@ netstat -ano | findstr :8004  # Monitor MCP
 - [LangGraph Plan-Execute](https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/)
 - [阿里云 DashScope](https://dashscope.aliyun.com/)
 - [MCP 协议](https://modelcontextprotocol.io/)
-
-## 📄 许可证
-author： chief
-
-MIT License
